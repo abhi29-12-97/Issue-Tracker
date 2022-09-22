@@ -29,7 +29,7 @@ app.set("layout extractScripts", true);
 app.use("/", router);
 
 //making app listen to port
-server.listen(port, server_host, function (err) {
+app.listen(port, server_host, function (err) {
   if (err) {
     console.log("port connecting error", err);
     return;
