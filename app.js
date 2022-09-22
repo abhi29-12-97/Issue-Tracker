@@ -12,35 +12,22 @@ const app = express();
 const port = process.env.PORT || 3000;
 var server_host = process.env.YOUR_HOST || "0.0.0.0";
 const MongoStore = connectMongoDBSession(session);
-
+//making the static folder to use css from it
 app.use(express.static("./assets"));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(bodyParser.json());
 
+//setting up ejs views for the application and extracting scripts and styles from the child ejs
 app.set("view engine", "ejs");
 app.use(expressLayouts);
 
 app.set("layout extractStyles", true);
 app.set("layout extractScripts", true);
 
+//make app use index.js file in routes folder
 app.use("/", router);
 
-// var store = new MongoStore({
-//   uri: process.env.DATABASE,
-//   collection: "sessions",
-// });
-app.use(
-  session({
-    secret: "This is a secret",
-    cookie: {
-      maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
-    },
-    resave: true,
-    saveUninitialized: true,
-  })
-);
-const server = http.createServer(app);
 //making app listen to port
 server.listen(port, server_host, function (err) {
   if (err) {

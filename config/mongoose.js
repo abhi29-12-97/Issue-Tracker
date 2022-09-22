@@ -1,4 +1,4 @@
-// setting up mongoose schema for the database
+// setting up mongoose schema for the database Atlas Version
 import mongoose from "mongoose";
 var uri =
   process.env.MONGOLAB_URI ||
